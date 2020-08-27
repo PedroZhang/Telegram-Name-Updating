@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Updated(2020/08/27):
+#  支持修改first name
+#  阴间样式字体生成器 https://igfonts.io/
+
 # Updated:
 #  1. 使用async来update lastname，更加稳定
 #  2. 增加emoji clock，让时间显示更加有趣味
@@ -56,23 +60,39 @@ async def change_name_auto():
                 hsym = time_emoji_symb[(int(hour)%12)*2+shift]
                 # await client1.send_message('me', hsym)
                 for_fun = random.random() 
-                if for_fun < 0.10:
-                    last_name = '%s时%s分 %s' % (hour, minu, hsym)
-                elif for_fun < 0.30:
-                    last_name = '%s:%s %s %s %s' % (hour, minu, p, abbwn, hsym)
-                elif for_fun < 0.60:
-                    last_name = '%s:%s %s UTC+8 %s' % (hour, minu, p, hsym)
-                elif for_fun < 0.90:
-                    last_name = '%s' % dizzy
+                if for_fun < 0.25:
+                    last_name = '| %s时%s分 %s' % (hour, minu, hsym)
+                elif for_fun < 0.50:
+                    last_name = '| %s:%s %s %s %s' % (hour, minu, p, abbwn, hsym)
+                elif for_fun < 0.75:
+                    last_name = '| %s:%s %s UTC+8 %s' % (hour, minu, p, hsym)
+                elif for_fun < 0.875:
+                    last_name = '| %s' % dizzy
                 else:
-                    last_name = '%s' % cake
-        
+                    last_name = '| %s' % cake
+
+#first name在此处修改
+                for_fun2 = random.random() 
+                if for_fun2 < 0.20:
+                    first_name = 'ᴘᴇᴅʀᴏᴢ '
+                elif for_fun2 < 0.40:
+                    first_name = '𝙋𝙚𝙙𝙧𝙤𝙕 '
+                elif for_fun2 < 0.60:
+                    first_name = '𝓟𝓮𝓭𝓻𝓸𝓩 '
+                elif for_fun2 < 0.80:
+                    first_name = 'PΣDЯӨZ '
+                else:
+                    first_name = 'ℙ𝕖𝕕𝕣𝕠ℤ '
+
                 await client1(UpdateProfileRequest(last_name=last_name))
-                logger.info('Updated -> %s' % last_name)
-        
+                await client1(UpdateProfileRequest(first_name=first_name))
+                logger.info('Updated -> %s %s' % (first_name, last_name))  
+
+ # 程序停止时默认名称        
         except KeyboardInterrupt:
-            print('\nwill reset last name\n')
+            print('\nwill reset name\n')
             await client1(UpdateProfileRequest(last_name=''))
+            await client1(UpdateProfileRequest(first_name='𝙋𝙚𝙙𝙧𝙤𝙕'))
             sys.exit()
 
         except Exception as e:
