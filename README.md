@@ -16,7 +16,9 @@ lastname实时更新效果：<a href="https://t.me/ccnon">PedroZ</a>
 
 <code>git clone https://github.com/PedroZhang/Telegram-Name-Updating.git</code>\
 <code>cd Telegram-Name-Updating</code>
+
 并按照注释修改tg_username_update.py中的五个用户名以及下方停止运行后的默认用户名，重新上传到vps
+
 提供一个阴间字体在线生成网站 https://igfonts.io/
 
 ## 2. 安装telethon
